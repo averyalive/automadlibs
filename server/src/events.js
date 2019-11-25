@@ -1,6 +1,6 @@
 const express = require('express');
 
-function createRouter(connection) {
+function createRouter(db) {
   const router = express.Router();
 
   // define routes here
