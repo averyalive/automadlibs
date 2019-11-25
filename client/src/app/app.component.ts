@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { ServerService } from './server.service';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +9,9 @@ import { HttpClient } from '@angular/common/http';
 export class AppComponent {
   title = 'client';
 
-  constructor(private http: HttpClient) {
-    // this.http.get('')
+  constructor(private server: ServerService) {
+    this.server.getApi().then((res: any) => {
+      console.log(res);
+    });
   }
 }

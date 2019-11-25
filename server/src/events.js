@@ -5,6 +5,12 @@ function createRouter(db) {
 
   // define routes here
 
+  router.get('/api', (req, res, next) => {
+    res
+      .status(200)
+      .json({ message: 'Automadlibs Server API (connected)'});
+  });
+
   return router;
 }
 
