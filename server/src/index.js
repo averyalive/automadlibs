@@ -3,7 +3,7 @@
 const express = require('express');
 const mysql = require('mysql');
 const events = require('./events');
-const credentials = require('./credentials.json');
+const credentials = require('../credentials.json');
 
 const connection = mysql.createConnection({
   host: credentials.host,
