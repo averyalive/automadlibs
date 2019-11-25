@@ -16,6 +16,7 @@ connection.connect();
 
 const port = process.env.PORT || 8080;
 
+// create an Express server and configure a router (located in events.js)
 const app = express()
   .use(events(connection));
 
