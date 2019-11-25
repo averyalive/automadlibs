@@ -1,1 +1,24 @@
-// start server here
+// Shout-out to https://developer.okta.com/blog/2019/08/16/angular-mysql-express
+
+const express = require('express');
+const mysql = require('mysql');
+const events = require('./events');
+const credentials = require('./credentials.json');
+
+const connection = mysql.createConnection({
+  host: credentials.host,
+  user: credentials.user,
+  password: credentials.password,
+  database: credentials.database
+});
+
+connection.connect();
+
+const port = process.env.PORT || 8080;
+
+const app = express()
+  .use(events(connection));
+
+app.listen(port, () => {
+  console.log(`Express server listening on port ${port}`);
+});
