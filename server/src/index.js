@@ -13,7 +13,12 @@ const connection = mysql.createConnection({
   database: credentials.database
 });
 
-connection.connect();
+connection.connect((err) => {
+  if(err){
+      throw err;
+  }
+  console.log('Mysql connected...');
+});
 
 const port = process.env.PORT || 8080;
 
