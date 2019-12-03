@@ -38,7 +38,8 @@ function createMadlib(req, res) {
   res
     .status(200)
     .json({
-      title: req.body.template
+      title: req.body.template,
+      html: "<p>HTML contents will be parsed server-side.</p>"
     });
 }
 

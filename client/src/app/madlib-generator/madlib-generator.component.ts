@@ -14,8 +14,7 @@ export class MadlibGeneratorComponent implements OnChanges {
 
   ngOnChanges() {
     this.serverService.createMadlib(this.selectedTemplate).then(data => {
-      console.log(data);
-      this.madlibHtml = '<p>' + JSON.stringify(data) + '</p>';
+      this.madlibHtml = data['html'];
     },
     err => {
       console.log(err);
