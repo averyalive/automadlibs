@@ -1,13 +1,20 @@
 <mat-card>
-    <mat-card-header>
+    <mat-card-title-group>
         <mat-card-title>Generate a Madlib</mat-card-title>
-        <mat-card-subtitle>Group AAA</mat-card-subtitle>
-    </mat-card-header>
+        <mat-card-subtitle>Once you've chosen a template, your madlib will be auto-generated using our database of 75k+ words!</mat-card-subtitle>
+    </mat-card-title-group>
     <mat-card-content>
-        <p>Put generator template here.</p>
+        <form [formGroup]='selectorForm'>
+            <mat-form-field>
+                <mat-label>Choose a template</mat-label>
+                <mat-select formControlName='template' (selectionChange)='onSelect($event)'>
+                    <mat-option *ngFor='let template of templates' [value]='template'>
+                        {{template}}
+                    </mat-option>
+                    <mat-option value='template1'>Template 1</mat-option>
+                    <mat-option value='template2'>Template 2</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </form>
     </mat-card-content>
-    <mat-card-actions>
-        <button mat-button mat-flat-button color='primary'>GENERATE</button>
-        <button mat-button mat-flat-button color='accent'>CHOOSE ANOTHER TEMPLATE</button>
-    </mat-card-actions>
 </mat-card>
