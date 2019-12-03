@@ -6,6 +6,6 @@
     </mat-toolbar-row>
 </mat-toolbar>
 <div id="main">
-    <app-template-selector></app-template-selector>
-    <app-madlib-generator *ngIf='true'></app-madlib-generator>
+    <app-template-selector (templateSelected)='setTemplate($event.value)'></app-template-selector>
+    <app-madlib-generator *ngIf='selectedTemplate' [selectedTemplate]='selectedTemplate'></app-madlib-generator>
 </div>

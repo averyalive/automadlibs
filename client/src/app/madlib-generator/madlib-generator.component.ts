@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-madlib-generator',
@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./madlib-generator.component.scss']
 })
 export class MadlibGeneratorComponent implements OnInit {
+  @Input() selectedTemplate;
 
   constructor() { }
 

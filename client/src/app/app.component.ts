@@ -8,10 +8,16 @@ import { ServerService } from './server.service';
 })
 export class AppComponent {
   title = 'client';
+  selectedTemplate;
 
   constructor(private server: ServerService) {
     this.server.getApi().then((res: any) => {
       console.log(res);
     });
+  }
+
+  setTemplate(template) {
+    this.selectedTemplate = template;
+    console.log(template);
   }
 }
