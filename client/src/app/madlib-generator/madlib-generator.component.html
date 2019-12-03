@@ -1,8 +1,7 @@
 <mat-card>
     <mat-card-title-group>
-        <mat-card-title>Here's your madlib!</mat-card-title>
+        <mat-card-title>Madlib Generated from {{selectedTemplate}}</mat-card-title>
     </mat-card-title-group>
-    <mat-card-content>
-        <p>You chose <strong>{{selectedTemplate}}</strong>.</p>
+    <mat-card-content [innerHTML]='madlibHtml'>
     </mat-card-content>
 </mat-card>
