@@ -6,10 +6,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material.module';
+import { TemplateSelectorComponent } from './template-selector/template-selector.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    TemplateSelectorComponent
   ],
   imports: [
     BrowserModule,
