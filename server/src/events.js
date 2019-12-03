@@ -1,4 +1,5 @@
 const express = require('express');
+const madlibs = require('./madlibs');
 
 var db;
 
@@ -27,7 +28,11 @@ function getTemplates(req, res) {
       console.log(err);
       res.status(500).json({ status: 'error' });
     } else {
-      res.status(200).json(data);
+      var templates = [];
+      for (var row in data) {
+        templates.push(data[row]['name']);
+      }
+      res.status(200).json(templates);
     }
   });
 }
