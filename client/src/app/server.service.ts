@@ -23,4 +23,8 @@ export class ServerService {
   getApi() {
     return this.request('GET', `${environment.serverUrl}/api`);
   }
+
+  getTemplates() {
+    return this.request('GET', `${environment.serverUrl}/api/templates`);
+  }
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
+import { ServerService } from '../server.service';
 
 @Component({
   selector: 'app-template-selector',
@@ -8,20 +9,23 @@ import { FormBuilder } from '@angular/forms';
 })
 export class TemplateSelectorComponent implements OnInit {
   selectorForm;
-  templates = [];
+  templates;
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(
+    private formBuilder: FormBuilder,
+    private serverService: ServerService,) { }
 
   ngOnInit() {
+    this.serverService.getTemplates().then(data => {
+      this.templates = data.templates;
+    });
     this.selectorForm = this.formBuilder.group({
       template: '',
     });
   }
 
   onSelect(template) {
-    // call server service here.
-    // should generate a madlib using the selected template.
-    console.log(template);
+    
   }
 
 }

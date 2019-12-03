@@ -9,6 +9,7 @@ function createRouter(db) {
   // define routes here
   router.get('/api', (req, res) => { getApi(req, res); });
   router.get('/api/word/random', (req, res) => { getRandomWord(req, res); });
+  router.get('/api/templates', (req, res) => { getTemplates(req, res) });
 
 
   return router;
@@ -18,6 +19,14 @@ function getApi(req, res) {
   res
     .status(200)
     .json({ message: 'Automadlibs Server API (connected)'});
+}
+
+function getTemplates(req, res) {
+  res
+    .status(200)
+    .json({
+      templates: ['Server Template 1', 'Server Template 2', 'Server Template 3']
+    });
 }
 
 function getRandomWord(req, res) {
