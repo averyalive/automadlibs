@@ -22,19 +22,30 @@ function getApi(req, res) {
 }
 
 function getTemplates(req, res) {
-  res
-    .status(200)
-    .json({
-      templates: ['Server Template 1', 'Server Template 2', 'Server Template 3']
-    });
+  this.db.query('SELECT name FROM templates', (err, data) => {
+    if (err) {
+      console.log(err);
+      res.status(500).json({ status: 'error' });
+    } else {
+      res.status(200).json(data);
+    }
+  });
 }
 
 function createMadlib(req, res) {
-  res
-    .status(200)
-    .json({
-      title: req.body.template,
-      html: "<p>HTML contents will be parsed server-side.</p>"
+  var selectedTemplate = req.body.template;
+  this.db.query('SELECT * FROM templates WHERE name="' + selectedTemplate + '"',
+    (err, data) => {
+      if (err) {
+        console.log(err);
+        res.status(500).json({ status: 'error' });
+      } else {
+        console.log(data);
+        res.status(200).json({
+          name: selectedTemplate,
+          html: "<pre>" + data[0].contents + "</pre>",
+        });
+      }
     });
 }
 

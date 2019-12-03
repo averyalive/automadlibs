@@ -11,7 +11,7 @@ import { EventEmitter } from '@angular/core';
 })
 export class TemplateSelectorComponent implements OnInit {
   selectorForm;
-  templates;
+  templates: any[];
   @Output() templateSelected = new EventEmitter();
 
   constructor(
@@ -20,8 +20,11 @@ export class TemplateSelectorComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit() {
-    this.serverService.getTemplates().then(data => {
-      this.templates = data['templates'];
+    this.serverService.getTemplates().then((data: any[]) => {
+      this.templates = [];
+      for (var row in data) {
+        this.templates.push(data[row]['name']);
+      }
     });
     this.selectorForm = this.formBuilder.group({
       template: '',
