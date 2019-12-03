@@ -27,4 +27,11 @@ export class ServerService {
   getTemplates() {
     return this.request('GET', `${environment.serverUrl}/api/templates`);
   }
+
+  createMadlib(template) {
+    let data = {
+      'template': template
+    };
+    return this.request('POST', `${environment.serverUrl}/api/madlibs`, data);
+  }
 }

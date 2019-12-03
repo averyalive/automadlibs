@@ -7,9 +7,10 @@ function createRouter(db) {
   this.db = db;
 
   // define routes here
-  router.get('/api', (req, res) => { getApi(req, res); });
-  router.get('/api/word/random', (req, res) => { getRandomWord(req, res); });
+  router.get('/api', (req, res) => { getApi(req, res) });
+  router.get('/api/word/random', (req, res) => { getRandomWord(req, res) });
   router.get('/api/templates', (req, res) => { getTemplates(req, res) });
+  router.post('/api/madlibs', (req, res) => { createMadlib(req, res) });
 
 
   return router;
@@ -34,7 +35,11 @@ function getRandomWord(req, res) {
 }
 
 function createMadlib(req, res) {
-  res.status(501).json({ message: 'Not Implemented' });
+  res
+    .status(200)
+    .json({
+      title: req.body.template
+    });
 }
 
 module.exports = createRouter;

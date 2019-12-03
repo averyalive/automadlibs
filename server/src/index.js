@@ -2,6 +2,7 @@
 
 const express = require('express');
 const mysql = require('mysql');
+const bodyParser = require('body-parser');
 const cors = require('cors');
 const events = require('./events');
 const credentials = require('../credentials.json');
@@ -25,6 +26,7 @@ const port = process.env.PORT || 8080;
 // create an Express server and configure a router (located in events.js)
 const app = express()
   .use(cors())
+  .use(bodyParser.json())
   .use(events(connection));
 
 app.listen(port, () => {
