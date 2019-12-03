@@ -1,5 +1,5 @@
 const express = require('express');
-const madlibs = require('./madlibs');
+const parser = require('./parser');
 
 var db;
 
@@ -45,10 +45,11 @@ function createMadlib(req, res) {
         console.log(err);
         res.status(500).json({ status: 'error' });
       } else {
-        console.log(data);
+        var templateContents = data[0].contents;
+        var madlibContents = this.parser.parse(templateContents);
         res.status(200).json({
           name: selectedTemplate,
-          contents: data[0].contents,
+          contents: madlibContents,
         });
       }
     });
