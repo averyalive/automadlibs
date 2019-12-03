@@ -8,7 +8,6 @@ function createRouter(db) {
 
   // define routes here
   router.get('/api', (req, res) => { getApi(req, res) });
-  router.get('/api/word/random', (req, res) => { getRandomWord(req, res) });
   router.get('/api/templates', (req, res) => { getTemplates(req, res) });
   router.post('/api/madlibs', (req, res) => { createMadlib(req, res) });
 
@@ -28,10 +27,6 @@ function getTemplates(req, res) {
     .json({
       templates: ['Server Template 1', 'Server Template 2', 'Server Template 3']
     });
-}
-
-function getRandomWord(req, res) {
-  res.status(501).json({ message: 'Not Implemented' });
 }
 
 function createMadlib(req, res) {
