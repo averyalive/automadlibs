@@ -8,13 +8,13 @@ import { ServerService } from '../server.service';
 })
 export class MadlibGeneratorComponent implements OnChanges {
   @Input() selectedTemplate;
-  madlibHtml;
+  madlib;
 
   constructor(private serverService: ServerService) { }
 
   ngOnChanges() {
     this.serverService.createMadlib(this.selectedTemplate).then(data => {
-      this.madlibHtml = data['html'];
+      this.madlib = data['contents'];
     },
     err => {
       console.log(err);

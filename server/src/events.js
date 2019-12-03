@@ -48,7 +48,7 @@ function createMadlib(req, res) {
         console.log(data);
         res.status(200).json({
           name: selectedTemplate,
-          html: "<pre>" + data[0].contents + "</pre>",
+          contents: data[0].contents,
         });
       }
     });
