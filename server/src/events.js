@@ -6,6 +6,7 @@ var db;
 function createRouter(db) {
   const router = express.Router();
   this.db = db;
+  this.parser.init(this.db);
 
   // define routes here
   router.get('/api', (req, res) => { getApi(req, res) });
