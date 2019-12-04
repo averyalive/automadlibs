@@ -8,7 +8,7 @@ CREATE TABLE IF NOT EXISTS words (
 );
 
 -- create index on the column spelling 
--- CREATE INDEX ORDER ON automadlibs.words(spelling);
+ CREATE INDEX index1 ON automadlibs.words(spelling);
 
 CREATE OR REPLACE TABLE madlibs (
     id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
