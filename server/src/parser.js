@@ -5,14 +5,14 @@ function init(db) {
 }
 
 function parse (s) {
-    s = s.replace(/$noun/, getWord('noun'));
-    s = s.replace(/$verb/, getWord('verb'));
-    s = s.replace(/$adjective/, getWord('adjective'));
-    s = s.replace(/$adverb/, getWord('adverb'));
+    s = s.replace(/$noun/, getWord('nouns'));
+    s = s.replace(/$verb/, getWord('verbs'));
+    s = s.replace(/$adjective/, getWord('adjectives'));
+    s = s.replace(/$adverb/, getWord('adverbs'));
 }
 
 function getWord(type) {
-    this.db.query('SELECT randomWord(?', [type],
+    this.db.query(`SELECT * FROM ${type} LIMIT 1`,
     (err, data) => {
         if (err) {
             console.log(err);
