@@ -7,25 +7,29 @@ CREATE TABLE IF NOT EXISTS words (
     type VARCHAR(100)
 );
 
-CREATE OR REPLACE VIEW nouns AS
+CREATE OR REPLACE VIEW noun AS
 SELECT spelling FROM words
 WHERE type = "Noun"
-ORDER BY RAND();
+ORDER BY RAND()
+LIMIT 1;
 
-CREATE OR REPLACE VIEW verbs AS
+CREATE OR REPLACE VIEW verb AS
 SELECT spelling FROM words
 WHERE type = "Verb"
-ORDER BY RAND();
+ORDER BY RAND()
+LIMIT 1;
 
-CREATE OR REPLACE VIEW adjectives AS
+CREATE OR REPLACE VIEW adjective AS
 SELECT spelling FROM words
 WHERE type = "Adjective"
-ORDER BY RAND();
+ORDER BY RAND()
+LIMIT 1;
 
-CREATE OR REPLACE VIEW adverbs AS
+CREATE OR REPLACE VIEW adverb AS
 SELECT spelling FROM words
 WHERE type = "Adverb"
-ORDER BY RAND();
+ORDER BY RAND()
+LIMIT 1;
 
 -- create index on the column spelling 
 CREATE INDEX index1 ON automadlibs.words(spelling);

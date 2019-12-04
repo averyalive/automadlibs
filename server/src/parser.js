@@ -12,7 +12,7 @@ function parse (s) {
 }
 
 function getWord(type) {
-    this.db.query('SELECT randomWord(?', [type],
+    this.db.query(`SELECT * FROM ${type}`,
     (err, data) => {
         if (err) {
             console.log(err);
