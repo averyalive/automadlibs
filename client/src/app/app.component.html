@@ -3,9 +3,11 @@
         <span id='app-title'>AutoMadlibs
         </span>
         <span class="menu-spacer"></span>
-        <button mat-button mat-flat-button color="accent" (click)="viewHistory()">
+        <button mat-mini-fab class="menu-button" (click)="viewHistory()">
             <mat-icon>history</mat-icon>
-            HISTORY
+        </button>
+        <button mat-mini-fab class="menu-button" (click)="clearScreen()">
+            <mat-icon>clear</mat-icon>
         </button>
     </mat-toolbar-row>
 </mat-toolbar>

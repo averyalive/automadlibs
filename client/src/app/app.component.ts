@@ -28,7 +28,11 @@ export class AppComponent implements OnInit {
 
   viewHistory() {
     this.serverService.getMadlibs().then((data: any[]) => {
-      this.madlibs = data;
+      this.madlibs = data.reverse();
     });
+  }
+
+  clearScreen() {
+    this.madlibs = [];
   }
 }
