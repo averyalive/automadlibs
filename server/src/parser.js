@@ -22,7 +22,8 @@ class Parser {
     replaceAllOfType(s, type) {
         return this.query(`SELECT * FROM ${type}`)
             .then(data => {
-                s = s.replace(`$${type}`, data[0]['spelling']);
+                var word = data[0]['spelling'].toLowerCase();
+                s = s.replace(`$${type}`, word);
                 if (s.indexOf(`$${type}`) < 0) {
                     return s;
                 } else {
