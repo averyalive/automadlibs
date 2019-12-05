@@ -49,11 +49,19 @@ function createMadlib(req, res) {
       } else {
         var templateContents = data[0].contents;
         this.parser.parse(templateContents).then(madlibContents => {
-          console.log('madlibContents=' + JSON.stringify(madlibContents));
-          res.status(200).json({
-            name: selectedTemplate,
-            contents: madlibContents,
-          });
+          this.db.query('INSERT INTO madlibs (name, contents) VALUES (?,?)',
+          [selectedTemplate, madlibContents],
+          (err) => {
+            if (err) {
+              console.log(err);
+              res.status(500).json({ status: 'error' });
+            } else {
+              res.status(200).json({
+                name: selectedTemplate,
+                contents: madlibContents,
+              });
+            }
+          })
         });
       }
     });
