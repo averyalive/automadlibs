@@ -1,25 +1,39 @@
-var db;
+const {promisify} = require('util');
 
-function init(db) {
-    this.db = db;
+class Parser {
+    constructor(db) {
+        this.db = db;
+        this.query = promisify(this.db.query.bind((this.db)));
+    }
+    
+    parse (s) {
+        return this.replaceAllOfType(s, 'noun')
+            .then(s => {
+                return this.replaceAllOfType(s, 'verb');
+            })
+            .then(s => {
+                return this.replaceAllOfType(s, 'adjective');
+            })
+            .then(s => {
+                return this.replaceAllOfType(s, 'adverb');
+            });
+    }
+
+    replaceAllOfType(s, type) {
+        return this.getWord(type)
+            .then(data => {
+                s = s.replace(`$${type}`, data[0]['spelling']);
+                if (s.indexOf(`$${type}`) < 0) {
+                    return s;
+                } else {
+                    return this.replaceAllOfType(s, type);
+                }
+            })
+            .catch(err => console.log(err));
+    }
+    
+    getWord(type) {
+        return this.query(`SELECT * FROM ${type}`);
+    }
 }
-
-function parse (s) {
-    s = s.replace(/$noun/, getWord('noun'));
-    s = s.replace(/$verb/, getWord('verb'));
-    s = s.replace(/$adjective/, getWord('adjective'));
-    s = s.replace(/$adverb/, getWord('adverb'));
-}
-
-function getWord(type) {
-    this.db.query(`SELECT * FROM ${type}`,
-    (err, data) => {
-        if (err) {
-            console.log(err);
-        } else {
-            return data;
-        }
-    });
-}
-
-module.exports = init, parse;
+module.exports = Parser;

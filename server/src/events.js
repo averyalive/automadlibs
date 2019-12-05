@@ -1,12 +1,13 @@
 const express = require('express');
-const parser = require('./parser');
+const Parser = require('./parser');
 
 var db;
+var parser;
 
 function createRouter(db) {
   const router = express.Router();
   this.db = db;
-  this.parser.init(this.db);
+  this.parser = new Parser(db);
 
   // define routes here
   router.get('/api', (req, res) => { getApi(req, res) });
@@ -47,10 +48,12 @@ function createMadlib(req, res) {
         res.status(500).json({ status: 'error' });
       } else {
         var templateContents = data[0].contents;
-        var madlibContents = this.parser.parse(templateContents);
-        res.status(200).json({
-          name: selectedTemplate,
-          contents: madlibContents,
+        this.parser.parse(templateContents).then(madlibContents => {
+          console.log('madlibContents=' + JSON.stringify(madlibContents));
+          res.status(200).json({
+            name: selectedTemplate,
+            contents: madlibContents,
+          });
         });
       }
     });
