@@ -36,10 +36,8 @@ CREATE INDEX index1 ON automadlibs.words(spelling);
 
 CREATE OR REPLACE TABLE madlibs (
     id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
-    contents TEXT,
-    html TEXT
-    -- reference the words it uses?
-    -- reference the template it used?
+    name VARCHAR(100),
+    contents TEXT
 );
 
 CREATE OR REPLACE TABLE templates (
