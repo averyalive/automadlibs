@@ -18,6 +18,5 @@ export class AppComponent {
 
   setTemplate(template) {
     this.selectedTemplate = template;
-    console.log(template);
   }
 }
