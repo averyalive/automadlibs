@@ -1,10 +1,9 @@
 -- see ER diagram at https://drive.google.com/file/d/1oEBwBVsq94VZssCmFlKziv3_6xqUpn0c/view?usp=sharing
 
-CREATE TABLE IF NOT EXISTS words (
-    id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
-    spelling VARCHAR(100),
-    type VARCHAR(100)
-);
+
+PRINT "-> Skipping table: words"
+
+PRINT "-> Initializing views: noun, verb, adjective, adverb"
 
 CREATE OR REPLACE VIEW noun AS
 SELECT spelling FROM words
@@ -30,8 +29,8 @@ WHERE type = "Adverb"
 ORDER BY RAND()
 LIMIT 1;
 
--- create index on the column spelling 
-CREATE INDEX index1 ON automadlibs.words(spelling);
+
+PRINT "-> Initializing table: madlibs"
 
 CREATE OR REPLACE TABLE madlibs (
     id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
@@ -39,11 +38,13 @@ CREATE OR REPLACE TABLE madlibs (
     contents TEXT
 );
 
+
+PRINT "-> Initializing table: templates"
+
 CREATE OR REPLACE TABLE templates (
     id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
     name VARCHAR(100),
     contents TEXT
-    -- reference the madlibs generated from this template?
 );
 
 INSERT templates (name, contents) VALUES
@@ -69,23 +70,9 @@ INSERT templates (name, contents) VALUES
     'Burn Generator',
     "You're a $adjective, $adjective $noun with $adjective $noun."
 ),(
-    'Incomplete Knock Knock Jokes',
+    'Lame Knock Knock Joke',
     "Knock knock.\n\nWho's there?\n\n$adjective $noun!\n\n....get it?"
 ),(
     'Number Limerick',
     "There exists a number that's $adjective\n\nIt's $adjective to $verb and quite $adjective\n\nBut if you $verb and $verb\n\nYou might just $verb\n\nThat this number won't $adverb $verb."
 );
-
--- insert dictionary from dictionary.xml,
--- assuming mysql client is being run from this file's directory.
--- LOAD XML LOCAL INFILE '../dictionary/full/dictionary.xml'
--- INTO TABLE automadlibs.words
--- ROWS IDENTIFIED BY '<word>';
-
-
---insert mabslibs from madlib-1.json
--- assuming mysql client is being run from this file's directory.
---LOAD DATA INFILE "../madlibs/madlib-1.json"
---INTO TABLE automadlibs.madlibs
---FIELDS TERMINATED BY '\0' ESCAPED BY ''
---LINES TERMINATED BY '\0';
