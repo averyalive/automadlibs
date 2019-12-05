@@ -1,8 +1,5 @@
 -- see ER diagram at https://drive.google.com/file/d/1oEBwBVsq94VZssCmFlKziv3_6xqUpn0c/view?usp=sharing
 
-
-PRINT "-> Initializing table: words"
-
 CREATE OR REPLACE TABLE words (
     id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
     spelling VARCHAR(100),
@@ -15,8 +12,6 @@ LOAD XML LOCAL INFILE '../dictionary/dictionary.xml'
 INTO TABLE automadlibs.words
 ROWS IDENTIFIED BY '<word>';
 
-
-PRINT "-> Initializing views: noun, verb, adjective, adverb"
 
 CREATE OR REPLACE VIEW noun AS
 SELECT spelling FROM words
@@ -43,16 +38,12 @@ ORDER BY RAND()
 LIMIT 1;
 
 
-PRINT "-> Initializing table: madlibs"
-
 CREATE OR REPLACE TABLE madlibs (
     id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
     name VARCHAR(100),
     contents TEXT
 );
 
-
-PRINT "-> Initializing table: templates"
 
 CREATE OR REPLACE TABLE templates (
     id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
