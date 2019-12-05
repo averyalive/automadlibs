@@ -69,10 +69,10 @@ INSERT templates (name, contents) VALUES
     'Burn Generator',
     "You're a $adjective, $adjective $noun with $adjective $noun."
 ),(
-    'Knock Knock Jokes',
+    'Incomplete Knock Knock Jokes',
     "Knock knock.\n\nWho's there?\n\n$adjective $noun!\n\n....get it?"
 ),(
-    'A Limerick',
+    'Number Limerick',
     "There exists a number that's $adjective\n\nIt's $adjective to $verb and quite $adjective\n\nBut if you $verb and $verb\n\nYou might just $verb\n\nThat this number won't $adverb $verb."
 );
 
