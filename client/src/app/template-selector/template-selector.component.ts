@@ -13,6 +13,7 @@ export class TemplateSelectorComponent implements OnInit {
   selectorForm;
   templates;
   @Output() templateSelected = new EventEmitter();
+  madlibs;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -26,10 +27,18 @@ export class TemplateSelectorComponent implements OnInit {
     this.selectorForm = this.formBuilder.group({
       template: '',
     });
+
+    this.serverService.getMadlibs().then(data => {
+      this.madlibs = data;
+    })
   }
 
-  onSelect(template) {
-    this.templateSelected.emit(template);
+ onSelect(template) {
+    this.serverService.createMadlib(template).then(data => {
+      console.log(data);
+      this.madlibs.push(data);
+    })
+    // this.templateSelected.emit(template);
   }
-
+  
 }
