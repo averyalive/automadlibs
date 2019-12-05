@@ -1,10 +1,5 @@
 -- see ER diagram at https://drive.google.com/file/d/1oEBwBVsq94VZssCmFlKziv3_6xqUpn0c/view?usp=sharing
 
-
-PRINT "-> Skipping table: words"
-
-PRINT "-> Initializing views: noun, verb, adjective, adverb"
-
 CREATE OR REPLACE VIEW noun AS
 SELECT spelling FROM words
 WHERE type = "Noun"
@@ -30,16 +25,12 @@ ORDER BY RAND()
 LIMIT 1;
 
 
-PRINT "-> Initializing table: madlibs"
-
 CREATE OR REPLACE TABLE madlibs (
     id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
     name VARCHAR(100),
     contents TEXT
 );
 
-
-PRINT "-> Initializing table: templates"
 
 CREATE OR REPLACE TABLE templates (
     id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
