@@ -7,6 +7,7 @@ import {
   MatCardModule,
   MatFormFieldModule,
   MatSelectModule,
+  MatIconModule,
 } from '@angular/material';
 
 
@@ -20,6 +21,7 @@ import {
     MatFormFieldModule,
     MatSelectModule,
     ReactiveFormsModule,
+    MatIconModule,
   ],
   exports: [
     MatButtonModule,
@@ -28,6 +30,7 @@ import {
     MatFormFieldModule,
     MatSelectModule,
     ReactiveFormsModule,
+    MatIconModule,
   ]
 })
 export class MaterialModule { }

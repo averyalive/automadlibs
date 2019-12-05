@@ -10,13 +10,19 @@ export class AppComponent {
   title = 'client';
   selectedTemplate;
 
-  constructor(private server: ServerService) {
-    this.server.getApi().then((res: any) => {
+  constructor(private serverService: ServerService) {
+    this.serverService.getApi().then((res: any) => {
       console.log(res);
     });
   }
 
   setTemplate(template) {
     this.selectedTemplate = template;
+  }
+
+  viewHistory() {
+    this.serverService.getMadlibs().then((res: any) => {
+      console.log(res);
+    })
   }
 }

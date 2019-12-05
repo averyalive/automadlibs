@@ -1,8 +1,12 @@
 <mat-toolbar color='primary'>
     <mat-toolbar-row>
         <span id='app-title'>AutoMadlibs
-            <small>&mdash; Ananya, Ariel, & Avery</small>
         </span>
+        <span class="menu-spacer"></span>
+        <button mat-button mat-flat-button color="accent" (click)="viewHistory()">
+            <mat-icon>history</mat-icon>
+            HISTORY
+        </button>
     </mat-toolbar-row>
 </mat-toolbar>
 <div id="main">

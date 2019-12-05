@@ -12,8 +12,8 @@ function createRouter(db) {
   // define routes here
   router.get('/api', (req, res) => { getApi(req, res) });
   router.get('/api/templates', (req, res) => { getTemplates(req, res) });
+  router.get('/api/madlibs', (req, res) => { getMadlibs(req, res) });
   router.post('/api/madlibs', (req, res) => { createMadlib(req, res) });
-
 
   return router;
 }
@@ -37,6 +37,17 @@ function getTemplates(req, res) {
       res.status(200).json(templates);
     }
   });
+}
+
+function getMadlibs(req, res) {
+  this.db.query('SELECT name, contents FROM madlibs', (err, data) => {
+    if (err) {
+      console.log(err);
+      res.status(500).json({ status: 'error' });
+    } else {
+      res.status(200).json(data);
+    }
+  })
 }
 
 function createMadlib(req, res) {

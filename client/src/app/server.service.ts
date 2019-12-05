@@ -28,6 +28,10 @@ export class ServerService {
     return this.request('GET', `${environment.serverUrl}/api/templates`);
   }
 
+  getMadlibs() {
+    return this.request('GET', `${environment.serverUrl}/api/madlibs`);
+  }
+
   createMadlib(template) {
     let data = {
       'template': template

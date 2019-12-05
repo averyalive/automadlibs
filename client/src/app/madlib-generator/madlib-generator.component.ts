@@ -13,6 +13,10 @@ export class MadlibGeneratorComponent implements OnChanges {
   constructor(private serverService: ServerService) { }
 
   ngOnChanges() {
+    this.generateMadlib();
+  }
+
+  generateMadlib() {
     this.serverService.createMadlib(this.selectedTemplate).then(data => {
       this.madlib = data['contents'];
     },
