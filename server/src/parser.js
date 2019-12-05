@@ -20,7 +20,7 @@ class Parser {
     }
 
     replaceAllOfType(s, type) {
-        return this.getWord(type)
+        return this.query(`SELECT * FROM ${type}`)
             .then(data => {
                 s = s.replace(`$${type}`, data[0]['spelling']);
                 if (s.indexOf(`$${type}`) < 0) {
