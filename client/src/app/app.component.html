@@ -10,6 +10,6 @@
     </mat-toolbar-row>
 </mat-toolbar>
 <div id="main">
-    <app-template-selector (templateSelected)='setTemplate($event.value)'></app-template-selector>
-    <app-madlib-generator *ngIf='selectedTemplate' [selectedTemplate]='selectedTemplate'></app-madlib-generator>
+    <app-template-selector (onNewMadlib)='showNewMadlib($event)'></app-template-selector>
+    <app-madlib-card *ngFor="let madlib of madlibs" [data]="madlib"></app-madlib-card>
 </div>

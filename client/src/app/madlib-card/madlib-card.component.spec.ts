@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MadlibGeneratorComponent } from './madlib-generator.component';
+import { MadlibCardComponent } from './madlib-card.component';
 
-describe('MadlibGeneratorComponent', () => {
-  let component: MadlibGeneratorComponent;
-  let fixture: ComponentFixture<MadlibGeneratorComponent>;
+describe('MadlibCardComponent', () => {
+  let component: MadlibCardComponent;
+  let fixture: ComponentFixture<MadlibCardComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MadlibGeneratorComponent ]
+      declarations: [ MadlibCardComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(MadlibGeneratorComponent);
+    fixture = TestBed.createComponent(MadlibCardComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

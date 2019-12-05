@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ServerService } from './server.service';
 
 @Component({
@@ -6,9 +6,10 @@ import { ServerService } from './server.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'client';
   selectedTemplate;
+  madlibs = [];
 
   constructor(private serverService: ServerService) {
     this.serverService.getApi().then((res: any) => {
@@ -16,13 +17,18 @@ export class AppComponent {
     });
   }
 
-  setTemplate(template) {
-    this.selectedTemplate = template;
+  ngOnInit() {
+    
+  }
+
+  showNewMadlib(newMadlib) {
+    console.log('received new madlib:', newMadlib);
+    this.madlibs.unshift(newMadlib);
   }
 
   viewHistory() {
-    this.serverService.getMadlibs().then((res: any) => {
-      console.log(res);
-    })
+    this.serverService.getMadlibs().then((data: any[]) => {
+      this.madlibs = data;
+    });
   }
 }

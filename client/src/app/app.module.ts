@@ -7,13 +7,13 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material.module';
 import { TemplateSelectorComponent } from './template-selector/template-selector.component';
-import { MadlibGeneratorComponent } from './madlib-generator/madlib-generator.component';
+import { MadlibCardComponent } from './madlib-card/madlib-card.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TemplateSelectorComponent,
-    MadlibGeneratorComponent
+    MadlibCardComponent
   ],
   imports: [
     BrowserModule,

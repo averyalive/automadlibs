@@ -7,7 +7,7 @@
         <form [formGroup]='selectorForm'>
             <mat-form-field>
                 <mat-label>Choose a template</mat-label>
-                <mat-select formControlName='template' (selectionChange)='onSelect($event.value)'>
+                <mat-select formControlName='template' (selectionChange)='createMadlib($event.value)'>
                     <mat-option *ngFor='let template of templates' [value]='template'>
                         {{template}}
                     </mat-option>
