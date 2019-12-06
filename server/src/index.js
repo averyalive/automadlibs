@@ -5,13 +5,13 @@ const mysql = require('mysql');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const events = require('./events');
-const credentials = require('../credentials.json');
+//const credentials = require('../credentials.json');
 
 const connection = mysql.createConnection({
-  host: credentials.host,
-  user: credentials.user,
-  password: credentials.password,
-  database: credentials.database
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_DATABASE
 });
 
 connection.connect((err) => {
