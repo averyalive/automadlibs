@@ -1,0 +1,44 @@
+version: '3.7'
+services:
+  client:
+    build: ./client # Location of the Dockerfile for the client
+    restart: always
+    volumes:
+      - ./.caddy:/root/.caddy  # to save certificates on disk
+    environment: 
+      CADDY_HOST: "${WEB_HOSTNAME}" # The domain/host to serve to
+      CADDY_TLS: "${WEB_TLS}" # Set to email address to enable TLS
+      ACME_AGREE: "true" # Set to true to agree to the Let's Encrypt Subscriber Agreement (https://letsencrypt.org/documents/2017.11.15-LE-SA-v1.2.pdf)
+    ports:
+      - "2015:2015" 
+      - "80:80" # http
+      - "443:443" # https
+    depends_on: 
+      - server
+  server:
+    build: ./server # Location of the Dockerfile for the client
+    restart: always
+    environment: 
+      DB_HOST: db # hostname of the db container
+      DB_USER: '${DB_USER}'
+      DB_PASSWORD: '${DB_PASSWORD}'
+      DB_DATABASE: 'automadlibs'
+      WAIT_HOSTS: db:3306
+      WAIT_SLEEP_INTERVAL: 5
+      WAIT_HOSTS_TIMEOUT: 120
+    depends_on: 
+      - db
+  db:
+      image: mariadb:10
+      restart: always
+      environment:
+        MYSQL_DATABASE: 'automadlibs'
+        MYSQL_USER: '${DB_USER}'
+        MYSQL_PASSWORD: '${DB_PASSWORD}'
+        MYSQL_ROOT_PASSWORD: '${DB_ROOT_PASSWORD}'
+      volumes:
+        - db_data:/var/lib/mysql
+        - ./data/database_design/with_dict_docker:/docker-entrypoint-initdb.d
+        - ./data/dictionary/dictionary.xml:/usr/dict/dictionary.xml
+volumes: 
+  db_data:
